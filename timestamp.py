@@ -22,8 +22,10 @@ class TimestampCommand(sublime_plugin.EventListener):
        `date`, `time`, and `timestamp`
     """
     def on_query_completions(self, view, prefix, locations):
-        if prefix in ('isoD', 'now', 'datetime'):  # 2013-06-27T23:34:00
+        if prefix in ('isoD', 'now'):  # 2013-06-27T23:34:00
             val = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+        elif prefix == 'datetime':  # 2013-06-27 23:36:15
+            val = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         elif prefix in ('utcnow', 'utcdatetime'):  # 2013-06-28T06:35:54
             val = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
         elif prefix == 'date':       # 2013-06-27
